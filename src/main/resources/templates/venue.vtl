@@ -1,0 +1,18 @@
+<div class="jumbotron">
+  <h1>Band Venue Tracker</h1>
+</div>
+<h2>$venue.getName()</h2>
+<h3>All bands that have played $venue.getName():</h3>
+#foreach($band in $bands)
+  <li><a href="/bands/$band.getId()">$band.getName()</a></li>
+#end
+<h3>Update $venue.getName():</h3>
+<form action="/venues/$venue.getId()/update" method="post">
+  <label for="name">New Name:</label>
+  <input id="name" name="name" type="text" class="form-control" required>
+  <button type="submit" class="btn btn-success" id="updatevenue">Update venue</button>
+</form>
+<form action="/venues/$venue.getId()/delete" method="post">
+  <button type="submit" class="btn btn-success" id="delete$venue.getId()">Delete $venue.getName()</button>
+</form>
+<a href="/" class="btn btn-info">Home</a>

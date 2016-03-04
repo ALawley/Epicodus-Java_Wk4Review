@@ -57,8 +57,37 @@ public class Venue {
     }
   }
 
+  public List<Band> getBands() {
+    String sql = "SELECT bands.* FROM bands JOIN concerts ON (bands.id = concerts.band_id) WHERE concerts.venue_id = :id";
+    try(Connection con = DB.sql2o.open()) {
+      return con.createQuery(sql)
+        .addParameter("id", id)
+        .executeAndFetch(Band.class);
+    }
+  }
+
   //UPDATE
-
-
+  public void update(String newName) {
+    String sql = "UPDATE venues SET name = :name WHERE id = :id";
+    try(Connection con = DB.sql2o.open()) {
+      con.createQuery(sql)
+        .addParameter("name", newName)
+        .addParameter("id", id)
+        .executeUpdate();
+    }
+  }
+//
   //DELETE
+  public void delete() {
+    try(Connection con = DB.sql2o.open()) {
+      String sql = "DELETE FROM venues WHERE id = :id";
+        con.createQuery(sql)
+          .addParameter("id", id)
+          .executeUpdate();
+          String sql2 = "DELETE FROM concerts WHERE venue_id = :id";
+            con.createQuery(sql2)
+              .addParameter("id", id)
+              .executeUpdate();
+    }
+  }
 }

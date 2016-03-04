@@ -1,0 +1,14 @@
+<div class="jumbotron">
+  <h1>Band Venue Tracker</h1>
+</div>
+<h3>Add a venue:</h3>
+<form action="/venues" method="post">
+  <label for="name">Venue Name:</label>
+  <input id="name" name="name" type="text" class="form-control" required>
+  <button type="submit" class="btn btn-success" id="addvenue">Add Venue</button>
+</form>
+<h3>All venues:</h3>
+#foreach($venue in $venues)
+  <li><a href="/venues/$venue.getId()">$venue.getName()</a></li>
+#end
+<a href="/" class="btn btn-info">Home</a>

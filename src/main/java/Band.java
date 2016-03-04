@@ -94,6 +94,10 @@ public class Band {
         con.createQuery(sql)
           .addParameter("id", id)
           .executeUpdate();
+      String sql2 = "DELETE FROM concerts WHERE band_id = :id";
+        con.createQuery(sql2)
+          .addParameter("id", id)
+          .executeUpdate();
     }
   }
 }

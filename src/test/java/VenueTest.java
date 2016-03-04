@@ -22,9 +22,36 @@ public class VenueTest {
   }
 
   @Test
+  public void update_changesVenueName() {
+    Venue testVenue = new Venue("Hawthorne Theater");
+    testVenue.save();
+    testVenue.update("Berbati's");
+    Venue savedVenue = Venue.find(testVenue.getId());
+    assertEquals("Berbati's", savedVenue.getName());
+  }
+
+  @Test
+  public void delete_removesVenueFromDatabase() {
+    Venue testVenue = new Venue("Hawthorne Theater");
+    testVenue.save();
+    testVenue.delete();
+    assertEquals(0, Venue.all().size());
+  }
+
+  @Test
   public void find_findsInstanceOfVenueById() {
     Venue testVenue = new Venue("Hawthorne Theater");
     testVenue.save();
     assertEquals(Venue.find(testVenue.getId()), testVenue);
+  }
+
+  @Test
+  public void getBands_getsAllBandsVenueHasHosted() {
+    Band testBand = new Band("Agalloch");
+    testBand.save();
+    Venue testVenue = new Venue("Hawthorne Theater");
+    testVenue.save();
+    testBand.addVenue(testVenue.getId());
+    assertEquals(testBand, testVenue.getBands().get(0));
   }
 }
