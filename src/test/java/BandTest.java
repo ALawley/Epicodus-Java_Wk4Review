@@ -39,6 +39,16 @@ public class BandTest {
   }
 
   @Test
+  public void clearAll_removesAllBandsFromDatabase() {
+    Band testBand = new Band("Agalloch");
+    Band testBand1 = new Band("Primordial");
+    testBand.save();
+    testBand1.save();
+    Band.clearAll();
+    assertEquals(0, Band.all().size());
+  }
+
+  @Test
   public void find_findsInstanceOfBandById() {
     Band testBand = new Band("Agalloch");
     testBand.save();

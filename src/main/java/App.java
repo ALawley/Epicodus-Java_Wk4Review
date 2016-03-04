@@ -16,6 +16,14 @@ public class App {
       return new ModelAndView(model, layout);
     }, new VelocityTemplateEngine());
 
+    post("/delete", (request, response) -> {
+      HashMap<String, Object> model = new HashMap<String, Object>();
+      Band.clearAll();
+      Venue.clearAll();
+      model.put("template", "templates/index.vtl");
+      return new ModelAndView(model, layout);
+    }, new VelocityTemplateEngine());
+
     get("/bands", (request, response) -> {
       HashMap<String, Object> model = new HashMap<String, Object>();
       model.put("bands", Band.all());

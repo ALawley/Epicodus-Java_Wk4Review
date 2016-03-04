@@ -39,6 +39,16 @@ public class VenueTest {
   }
 
   @Test
+  public void clearAll_removesAllVenuesFromDatabase() {
+    Venue testVenue = new Venue("Hawthorne Theater");
+    Venue testVenue1 = new Venue("The Casbah");
+    testVenue.save();
+    testVenue1.save();
+    Venue.clearAll();
+    assertEquals(0, Venue.all().size());
+  }
+
+  @Test
   public void find_findsInstanceOfVenueById() {
     Venue testVenue = new Venue("Hawthorne Theater");
     testVenue.save();

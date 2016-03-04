@@ -100,4 +100,13 @@ public class Band {
           .executeUpdate();
     }
   }
+
+  public static void clearAll() {
+    try(Connection con = DB.sql2o.open()) {
+      String sql = "DELETE FROM bands *";
+        con.createQuery(sql).executeUpdate();
+      String sql2 = "DELETE FROM concerts *";
+        con.createQuery(sql2).executeUpdate();
+    }
+  }
 }

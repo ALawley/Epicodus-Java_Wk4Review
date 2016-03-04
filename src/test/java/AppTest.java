@@ -42,6 +42,26 @@ public class AppTest extends FluentTest {
   }
 
   @Test
+  public void deleteAllRemovesBandsTest() {
+    Band testBand = new Band("Agalloch");
+    testBand.save();
+    goTo("http://localhost:4567/");
+    submit("#deleteall");
+    goTo("http://localhost:4567/bands");
+    assertThat(pageSource()).doesNotContain("Agalloch");
+  }
+
+  @Test
+  public void deleteAllRemovesVenuesTest() {
+    Venue testVenue = new Venue("Hawthorne Theater");
+    testVenue.save();
+    goTo("http://localhost:4567/");
+    submit("#deleteall");
+    goTo("http://localhost:4567/venues");
+    assertThat(pageSource()).doesNotContain("Hawthorne Theater");
+  }
+
+  @Test
   public void bandUpdateTest() {
     Band testBand = new Band("Agalloch");
     testBand.save();
