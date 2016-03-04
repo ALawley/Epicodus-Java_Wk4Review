@@ -3,8 +3,8 @@
 </div>
 <h2>$band.getName()</h2>
 <h3>All venues that $band.getName() have played:</h3>
-#foreach($venue in $venues)
-  <li><a href="/venues/$venue.getId()">$venue.getName()</a></li>
+#foreach($assignedvenue in $assignedvenues)
+  <li><a href="/venues/$assignedvenue.getId()">$assignedvenue.getName()</a></li>
 #end
 <h3>Update $band.getName():</h3>
 <form action="/bands/$band.getId()/update" method="post">
@@ -15,10 +15,10 @@
 <h3>Click venues to mark them as places that $band.getName() has played:</h3>
 #foreach($venue in $venues)
 <form action="/bands/$band.getId()/addvenue/$venue.getId()" method="post" class="form-inline">
-  <button type="submit" class="btn btn-success" id="addvenue$venue.getId()">$venue.getName()</button>
+  <button type="submit" class="btn btn-primary" id="addvenue$venue.getId()">$venue.getName()</button>
 </form>
 #end
 <form action="/bands/$band.getId()/delete" method="post">
-  <button type="submit" class="btn btn-success" id="delete$band.getId()">Delete $band.getName()</button>
+  <button type="submit" class="btn btn-danger" id="deleteband">Delete $band.getName()</button>
 </form>
 <a href="/" class="btn btn-info">Home</a>
