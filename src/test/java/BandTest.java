@@ -44,4 +44,24 @@ public class BandTest {
     testBand.save();
     assertEquals(Band.find(testBand.getId()), testBand);
   }
+
+  @Test
+  public void addVenue_assignsVenueToBand() {
+    Band testBand = new Band("Agalloch");
+    testBand.save();
+    Venue testVenue = new Venue("Hawthorne Theater");
+    testVenue.save();
+    testBand.addVenue(testVenue.getId());
+    assertEquals(1, testBand.getVenues().size());
+  }
+
+  @Test
+  public void getVenues_getsAllVenuesBandHasPlayed() {
+    Band testBand = new Band("Agalloch");
+    testBand.save();
+    Venue testVenue = new Venue("Hawthorne Theater");
+    testVenue.save();
+    testBand.addVenue(testVenue.getId());
+    assertEquals(testVenue, testBand.getVenues().get(0));
+  }
 }

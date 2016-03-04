@@ -22,23 +22,6 @@ public class VenueTest {
   }
 
   @Test
-  public void update_changesVenueName() {
-    Venue testVenue = new Venue("Hawthorne Theater");
-    testVenue.save();
-    testVenue.update("Berbati's");
-    Venue savedVenue = Venue.find(testVenue.getId());
-    assertEquals("Berbati's", savedVenue.getName());
-  }
-
-  @Test
-  public void delete_removesVenueFromDatabase() {
-    Venue testVenue = new Venue("Hawthorne Theater");
-    testVenue.save();
-    testVenue.delete();
-    assertEquals(0, Venue.all().size());
-  }
-
-  @Test
   public void find_findsInstanceOfVenueById() {
     Venue testVenue = new Venue("Hawthorne Theater");
     testVenue.save();
