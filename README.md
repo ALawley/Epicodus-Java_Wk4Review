@@ -1,4 +1,4 @@
-# _Hair Salon Page_
+# _Band Venue Tracker_
 
 #### _Epicodus Java Database Exercise, 03.04.16_
 
